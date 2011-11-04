@@ -5,7 +5,7 @@
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-xetex
-Version:	20111103
+Version:	20111104
 Release:	1
 Summary:	Unicode and OpenType-enabled TeX engine
 Group:		Publishing
