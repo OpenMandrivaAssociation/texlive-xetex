@@ -15,7 +15,8 @@ Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.doc.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
-Requires(post):	texlive-tlpkg
+Requires(pre):	texlive-tlpkg
+Requires(post):	texlive-kpathsea
 Requires:	texlive-xetexconfig
 Requires:	texlive-xetex.bin
 Conflicts:	texlive-texmf <= 20110705-3
@@ -30,8 +31,8 @@ See http://tug.org/xetex.
     %_texmf_mktexlsr_pre
 
 %post
-    %_texmf_fmtutil_post
     %_texmf_mktexlsr_post
+    %_texmf_fmtutil_post
 
 %preun
     if [ $1 -eq 0 ]; then
@@ -41,8 +42,8 @@ See http://tug.org/xetex.
 
 %postun
     if [ $1 -eq 0 ]; then
-	%_texmf_fmtutil_post
 	%_texmf_mktexlsr_post
+	%_texmf_fmtutil_post
     fi
 
 #-----------------------------------------------------------------------
