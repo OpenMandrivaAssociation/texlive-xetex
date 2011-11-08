@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-xetex
 Version:	20111104
-Release:	1
+Release:	2
 Summary:	Unicode and OpenType-enabled TeX engine
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -45,6 +45,7 @@ See http://tug.org/xetex.
 	%_texmf_mktexlsr_post
 	%_texmf_fmtutil_post
     fi
+    rm -fr %{_texmfvardir}/web2c/xetex/
 
 #-----------------------------------------------------------------------
 %files
