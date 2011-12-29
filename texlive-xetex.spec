@@ -19,31 +19,17 @@ Requires(pre):	texlive-tlpkg
 Requires(post):	texlive-kpathsea
 Requires:	texlive-xetexconfig
 Requires:	texlive-xetex.bin
-Conflicts:	texlive-texmf <= 20110705-3
-Conflicts:	texlive-doc <= 20110705-3
 Requires(post):	texlive-tetex
 
 %description
 See http://tug.org/xetex.
 
-%pre
-    %_texmf_fmtutil_pre
-    %_texmf_mktexlsr_pre
-
 %post
-    %_texmf_mktexlsr_post
-    %_texmf_fmtutil_post
-
-%preun
-    if [ $1 -eq 0 ]; then
-	%_texmf_fmtutil_pre
-	%_texmf_mktexlsr_pre
-    fi
+    %{_sbindir}/texlive.post
 
 %postun
     if [ $1 -eq 0 ]; then
-	%_texmf_mktexlsr_post
-	%_texmf_fmtutil_post
+	%{_sbindir}/texlive.post
     fi
     rm -fr %{_texmfvardir}/web2c/xetex/
 
@@ -61,7 +47,6 @@ See http://tug.org/xetex.
 %_texmf_fmtutil_d/xetex
 %doc %{_texmfdistdir}/doc/xetex/base/XeTeX-notes.pdf
 %doc %{_texmfdistdir}/doc/xetex/base/XeTeX-notes.tex
-%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -76,8 +61,6 @@ pushd %{buildroot}%{_bindir}
 popd
 mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf-dist %{buildroot}%{_datadir}
-mkdir -p %{buildroot}%{_tlpkgobjdir}
-cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
 cp -fpar tlpkg/tlpostcode %{buildroot}%{_tlpkgdir}
 mkdir -p %{buildroot}%{_texmf_fmtutil_d}
 cat > %{buildroot}%{_texmf_fmtutil_d}/xetex <<EOF
