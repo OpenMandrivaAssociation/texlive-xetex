@@ -5,8 +5,8 @@
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-xetex
-Version:	20111104
-Release:	3
+Version:	20120221
+Release:	1
 Summary:	Unicode and OpenType-enabled TeX engine
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -17,9 +17,9 @@ BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
 Requires(post):	texlive-kpathsea
+Requires(post):	texlive-tetex
 Requires:	texlive-xetexconfig
 Requires:	texlive-xetex.bin
-Requires(post):	texlive-tetex
 
 %description
 See http://tug.org/xetex.
@@ -29,9 +29,9 @@ See http://tug.org/xetex.
 
 %postun
     if [ $1 -eq 0 ]; then
+	rm -fr %{_texmfvardir}/web2c/xetex
 	%{_sbindir}/texlive.post
     fi
-    rm -fr %{_texmfvardir}/web2c/xetex/
 
 #-----------------------------------------------------------------------
 %files
@@ -59,12 +59,14 @@ mkdir -p %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
     ln -sf xetex xelatex
 popd
-mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_tlpkgdir}
 cp -fpar tlpkg/tlpostcode %{buildroot}%{_tlpkgdir}
+mkdir -p %{buildroot}%{_datadir}
+cp -fpar texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_texmf_fmtutil_d}
 cat > %{buildroot}%{_texmf_fmtutil_d}/xetex <<EOF
+#
+# from xetex:
 xetex xetex language.def -etex xetex.ini
 xelatex xetex language.dat -etex xelatex.ini
 EOF
