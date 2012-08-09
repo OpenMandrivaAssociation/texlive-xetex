@@ -1,16 +1,17 @@
-# revision 24091
+# revision 26330
 # category TLCore
 # catalog-ctan undef
-# catalog-date undef
-# catalog-license undef
-# catalog-version undef
+# catalog-date 2012-05-06 11:41:55 +0200
+# catalog-license other-free
+# catalog-version 0.9997.5
 Name:		texlive-xetex
-Version:	20120221
+Epoch:		1
+Version:	0.9997.5
 Release:	1
 Summary:	Unicode and OpenType-enabled TeX engine
 Group:		Publishing
 URL:		http://tug.org/texlive
-License:	http://www.tug.org/texlive/LICENSE.TL
+License:	OTHER-FREE
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.doc.tar.xz
 BuildArch:	noarch
