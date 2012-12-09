@@ -71,3 +71,29 @@ cat > %{buildroot}%{_texmf_fmtutil_d}/xetex <<EOF
 xetex xetex language.def -etex xetex.ini
 xelatex xetex language.dat -etex xelatex.ini
 EOF
+
+
+%changelog
+* Thu Aug 09 2012 Paulo Andrade <pcpa@mandriva.com.br> 1:0.9997.5-1
++ Revision: 813185
+- Update to latest release.
+
+* Tue Feb 21 2012 Paulo Andrade <pcpa@mandriva.com.br> 20120221-1
++ Revision: 778488
+- Rebuild after tlpobj2spec.pl bug correction.
+
+* Thu Jan 05 2012 Paulo Andrade <pcpa@mandriva.com.br> 20111104-3
++ Revision: 757832
+- Rebuild to reduce used resources
+
+* Tue Nov 08 2011 Paulo Andrade <pcpa@mandriva.com.br> 20111104-2
++ Revision: 729095
+- texlive-xetex
+
+* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 20111104-1
++ Revision: 719928
+- texlive-xetex
+- texlive-xetex
+- texlive-xetex
+- texlive-xetex
+
