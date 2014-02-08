@@ -7,7 +7,7 @@
 Name:		texlive-xetex
 Epoch:		1
 Version:	0.9997.5
-Release:	1
+Release:	2
 Summary:	Unicode and OpenType-enabled TeX engine
 Group:		Publishing
 URL:		http://tug.org/texlive
