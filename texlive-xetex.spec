@@ -4,7 +4,7 @@ Version:	71991
 Release:	1
 Summary:	Unicode and OpenType-enabled TeX engine
 Group:		Publishing
-URL:		http://tug.org/texlive
+URL:		https://tug.org/texlive
 License:	OTHER-FREE
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.doc.r%{version}.tar.xz
