@@ -1,6 +1,6 @@
 Name:		texlive-xetex
 Epoch:		1
-Version:	71991
+Version:	73850
 Release:	1
 Summary:	Unicode and OpenType-enabled TeX engine
 Group:		Publishing
