@@ -1,64 +1,46 @@
-Name:		texlive-xetex
-Epoch:		1
-Version:	73850
+%global tl_name xetex
+%global tl_revision 77830
+
+Name:		texlive-%{tl_name}
+Version:	%{tl_revision}
 Release:	1
-Summary:	Unicode and OpenType-enabled TeX engine
+Summary:	An extended variant of TeX for use with Unicode sources
 Group:		Publishing
-URL:		https://tug.org/texlive
-License:	OTHER-FREE
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.doc.r%{version}.tar.xz
-# Stuff in upstream xetex.PLATFORM-OS.tar.xz tarballs comes from the texlive
-# package. No need to duplicate it here.
+URL:		https://www.ctan.org/pkg/xetex
+License:	x11
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/xetex.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
-Requires(post):	texlive-tetex
-Requires:	texlive-xetexconfig
-Requires:	texlive-xetex.bin
+BuildSystem:	texlive
+Requires:	texlive(babel)
+Requires:	texlive(cm)
+Requires:	texlive(dvipdfmx)
+Requires:	texlive(etex)
+Requires:	texlive(firstaid)
+Requires:	texlive(hyphen-base)
+Requires:	texlive(knuth-lib)
+Requires:	texlive(l3backend)
+Requires:	texlive(l3kernel)
+Requires:	texlive(latex)
+Requires:	texlive(latex-fonts)
+Requires:	texlive(lm)
+Requires:	texlive(plain)
+Requires:	texlive(tex-ini-files)
+Requires:	texlive(unicode-data)
+Requires:	texlive(xetex.bin)
+Requires:	texlive(xetexconfig)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-See http://tug.org/xetex.
+XeTeX is a TeX typesetting engine using Unicode and supporting modern
+font technologies such as OpenType, TrueType or Apple Advanced
+Typography (AAT), including OpenType mathematics fonts. XeTeX supports
+many extensions that reflect its origins in linguistic research; it also
+supports micro-typography (as available in pdfTeX). XeTeX was developed
+by the SIL (the first version was specifically developed for those
+studying linguistics, and using Macintosh computers). XeTeX's immediate
+output is an extended variant of DVI format, which is ordinarily
+processed by a tightly bound processor (called xdvipdfmx), that produces
+PDF. XeTeX is released as part of TeX Live; documentation has arisen
+separately. Source code is available from ctan:/systems/texlive/Source/.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	rm -fr %{_texmfvardir}/web2c/xetex
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_bindir}/xelatex
-%{_texmfdistdir}/fonts/misc/xetex
-%{_texmfdistdir}/scripts/texlive-extra/*
-%{_tlpkgdir}/tlpostcode/xetex.pl
-%_texmf_fmtutil_d/xetex
-%doc %{_texmfdistdir}/doc/xetex
-%doc %{_texmfdistdir}/doc/man/man1/*
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_bindir}
-pushd %{buildroot}%{_bindir}
-ln -sf xetex xelatex
-popd
-mkdir -p %{buildroot}%{_tlpkgdir}
-cp -fpar tlpkg/tlpostcode %{buildroot}%{_tlpkgdir}
-mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf-dist %{buildroot}%{_datadir}
-mkdir -p %{buildroot}%{_texmf_fmtutil_d}
-cat > %{buildroot}%{_texmf_fmtutil_d}/xetex <<EOF
-#
-# from xetex:
-xetex xetex language.def -etex xetex.ini
-xelatex xetex language.dat -etex xelatex.ini
-EOF
